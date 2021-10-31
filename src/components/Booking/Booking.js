@@ -19,7 +19,7 @@ const Booking = () => {
         const date = dateRef.current.value;
         const place = placeRef.current.value;
         const newTourist = {name, email, date, place};
-        fetch('http://localhost:5000/tourist', {
+        fetch('https://arcane-brushlands-48998.herokuapp.com/tourist', {
             method : 'POST',
             headers : {
                 'content-type' : 'application/json'

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
 // this is MyBooking Component
+// live site link added everywhere
 
 const MyBooking = () => {
 
@@ -9,7 +10,7 @@ const MyBooking = () => {
 
     const [myBooking, setMyBooking] = useState([]);
     useEffect( () => {
-        fetch('http://localhost:5000/tourist')
+        fetch('https://arcane-brushlands-48998.herokuapp.com/tourist')
         .then(res => res.json())
         .then(data => {
             const mached = data.filter(dt=> dt.email === user.email)
@@ -22,7 +23,7 @@ const MyBooking = () => {
         const sureDelete = window.confirm('you want to delete ??');
 
         if(sureDelete) {
-            const url = `http://localhost:5000/tourist/${id}`;
+            const url = `https://arcane-brushlands-48998.herokuapp.com/tourist/${id}`;
             fetch(url, {
                 method : 'DELETE',
             })
