@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useForm } from "react-hook-form";
 import './AddService.css';
 
+// This is AddServices component
+
 const AddService = () => {
 
     const { register, handleSubmit, reset } = useForm();
@@ -14,13 +16,13 @@ const AddService = () => {
              if(res.data.insertedId) {
                  alert('successfully added service');
                  reset();
-             }
-        })
-    }
+             };
+        });
+    };
 
     return (
         <div className='form-container'>
-          <h2 className='text-center fs-3 fst-italic text-secondary'>Please Add A Service</h2>
+         <h2><span className='text-danger'>Add</span> <span className='text-warning'>Service</span></h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
       

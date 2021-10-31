@@ -1,6 +1,9 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 
+// this is banner section
+// it contain 3 images
+
 const Banner = () => {
     return (
 

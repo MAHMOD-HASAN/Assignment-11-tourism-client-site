@@ -4,14 +4,14 @@ import { Container, Row, Col } from 'react-bootstrap';
 const Footer = () => {
     return (
         <Container className='bg-dark text-white fw-light p-4'>
-            <Row xs={1} md={2} lg={3}>
+            <Row xs={1} md={2} lg={3} className='text-center'>
 
                 <Col className='mb-4'>
                     <h4>Services</h4>
-                    <small>24 hours services</small><br/>
-                    <small>group classes</small><br/>
-                    <small>health care</small><br/>
-                    <small>boot camp </small>
+                    <small>Best tour spot</small><br/>
+                    <small>well guide</small><br/>
+                    <small>freash meals</small><br/>
+                    <small>friendly behave</small>
                 </Col>
 
                 <Col className='mb-4'>
@@ -45,7 +45,7 @@ const Footer = () => {
                     <small><i className="fab fa-twitter"></i> twitter</small>
                 </Col>
             </Row>
-            <small className='text-center d-block text-secondary'>mahmod hasan &copy; from 2011</small>
+            <small className='text-center d-block text-secondary'>safe travel &copy; from 2011</small>
         </Container>
     );
 };

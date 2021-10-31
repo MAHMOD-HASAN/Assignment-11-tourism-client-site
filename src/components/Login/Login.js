@@ -7,6 +7,9 @@ import useAuth from '../../hooks/useAuth';
 
 firebaseInitialize();
 
+// Login component
+// implement googleLogin and email, password Login system
+
 const Login = () => {
     
     // all state
@@ -20,13 +23,17 @@ const Login = () => {
     const redirec_uri = location.state?.from || '/home';
 
     // called useAuth and take signInUsingGoogle property
-    const { signInUsingGoogle, newUser, oldUser } = useAuth();
+    const { signInUsingGoogle, newUser, oldUser, setUser, setIsLoading } = useAuth();
 
     const handleGoogleSignIn = () => {
         signInUsingGoogle()
         .then(result => {
         history.push(redirec_uri);
         })
+        .catch(error => {
+            setError('are u want exit ?')
+        })
+        .finally(() => setIsLoading(false))
     }
 
     // email change
@@ -51,10 +58,12 @@ const Login = () => {
             setError('Password should be at least 6 characters ');
             return;
         }
-        if(isLogin) {
+        if (isLogin) {
+            // oldUser means already logged in
             oldUser(email, password)
             .then(result => {
                 const user = result.user;
+                setUser(user);
                 history.push(redirec_uri);
                 console.log(user);
                 setError('');
@@ -65,15 +74,17 @@ const Login = () => {
 
         }
         else{
+            // newUser means registration / signUp
             newUser(email, password)
             .then(result => {
                 const user = result.user;
+                setUser(user);
                 history.push(redirec_uri);
                 console.log(user);
                 setError('');
             })
            .catch(error => {
-               setError(error.message);
+               setError('sorry u already logged In');
            })
         }
     }

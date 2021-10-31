@@ -1,8 +1,6 @@
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+// import some components here
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Destination from './components/Destination/Destination';
 import Footer from './components/Footer/Footer';
 import HeaderNavbar from './components/Header/HeaderNavbar';
 import Home from './components/Home/Home';
@@ -12,7 +10,9 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import AuthProvider from './contexts/AuthProvider';
 import Booking from "./components/Booking/Booking";
 import AddService from "./components/AddService/AddService";
-import ManageServices from "./components/ManageServices/ManageServices";
+import DeleteService from "./components/DeleteService/DeleteService";
+import ManageBooking from "./components/ManageBooking/ManageBooking";
+import MyBooking from "./components/MyBooking/MyBooking";
 
 function App() {
   return (
@@ -36,16 +36,20 @@ function App() {
                     <Login></Login>
                     </Route>
 
-                    <Route exact path='/destination'>
-                    <Destination></Destination>
-                    </Route>
-
                     <Route exact path='/addService'>
                      <AddService></AddService>
                     </Route>
 
-                    <Route exact path='/manageService'>
-                     <ManageServices></ManageServices>
+                    <Route exact path='/myBooking'>
+                     <MyBooking></MyBooking>
+                    </Route>
+
+                    <Route exact path='/manageBooking'>
+                     <ManageBooking></ManageBooking>
+                    </Route>
+
+                    <Route exact path='/deleteService'>
+                     <DeleteService></DeleteService>
                     </Route>
 
                     <PrivateRoute exact path='/booking/:id'>

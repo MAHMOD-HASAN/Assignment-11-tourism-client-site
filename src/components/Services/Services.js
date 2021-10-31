@@ -1,8 +1,11 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Card, Col, Container, Row, Button } from 'react-bootstrap';
+import { Col, Container, Row, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
+// This is Services component
+// All service are here
 
 const Services = () => {
     const [services, setServices] = useState([]);
@@ -14,8 +17,8 @@ const Services = () => {
 
 
     return (
-        <Container className='my-5'>
-            <h1 className='text-center text-warning'>Services</h1>
+        <Container className='my-5 border-bottom border-5 bordeer-primary pb-5'>
+            <h1 className='text-center text-danger'>OUR TOUR SERVICES</h1>
             <Row xs={1} md={2} lg={3}>
                {
                    services.map(service => <Service
@@ -36,19 +39,21 @@ export default Services;
 function Service({ service }) {
     const {_id, name, img, price, guest} = service;
     return (
-        <Col>
-            <Card.Img 
-            height = '250px'
-            variant="top" src={img} />
 
-            <Card.Body>
-            <Card.Title>{name}</Card.Title>
-            <p><span>guest : {guest}</span>&nbsp; <span>price : {price}</span></p>
-            <Link to={`/booking/${_id}`}>
-            <Button variant="primary" className='w-100'>Book Now</Button>
-            </Link>
-            </Card.Body>
-        </Col>
+        <div className='gy-3 text-center'>
+            <Col style={{border : '2px solid lightgrey', borderRadius : '10px', backgroundColor : 'lightcyan'}}>
+                <img
+                width = '100%'
+                height = '240px'
+                variant="top" src={img} alt=""/>
+
+                <h3>{name}</h3>
+                <p><span>guest : {guest}</span>&nbsp; <span>price : {price}</span></p>
+                <Link to={`/booking/${_id}`}>
+                <Button variant="primary" className='w-100'>Book Now</Button>
+                </Link>
+            </Col>
+        </div>
     )
 }
 
@@ -59,16 +64,3 @@ function Service({ service }) {
 
 
 
-
-
-
-
-
-/*
-https://i.ibb.co/2SfR0hM/sentmartins.jpg
-https://i.ibb.co/PgXcpTv/sixty-dome-mosque.jpg
-https://i.ibb.co/0qX32Sx/sundarban.jpg
-https://i.ibb.co/6swvHL1/sajekvalley.jpg
-https://i.ibb.co/NCvkC6M/captai-lake.jpg
-https://i.ibb.co/rkpk1C0/coxs-s-Bazar.jpg
-*/
