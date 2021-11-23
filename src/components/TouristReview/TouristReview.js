@@ -38,7 +38,7 @@ const TouristReview = () => {
               style={{margin:'0 auto', display:'block', borderRadius:'50%', marginBottom:'20px', width : '120px'}}
               alt="" />
               <p className='text-center text-info fw-bold'>I'm Marya</p>
-              <p className='text-center'><small>It was a great jouerney in my life. Because safe trouble agency volunteer are friendly. They served healthy food for us. And they have best tourist spot to travel. So i think safe travel agency is best choice to travel</small></p>
+              <p className='text-center'><small>It was a great jouerney ever in my life life. Because safe trouble agency volunteer are friendly. They served healthy food for us. And they have best tourist spot to travel. So i think safe travel agency is best choice to travel</small></p>
           </Col>
 
        </div>

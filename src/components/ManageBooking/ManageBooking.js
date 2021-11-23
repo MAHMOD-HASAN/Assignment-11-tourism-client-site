@@ -38,7 +38,7 @@ const ManageBooking = () => {
                 <span style={{width:'200px', display:'inline-block'}}>{book.name}</span>
                 <span style={{width:'200px', display:'inline-block'}}>{book.date}</span>
                 <span style={{width:'200px', display:'inline-block'}}>{book.place}</span>
-                <button onClick={() => handleDelete(bookingStore._id)} className='bg-danger ms-3 my-1'><i className="fas fa-trash-alt"></i></button>
+                <button onClick={() => handleDelete(book._id)} className='bg-danger ms-3 my-1'><i className="fas fa-trash-alt"></i></button>
             </p>
             </div>)
     }
