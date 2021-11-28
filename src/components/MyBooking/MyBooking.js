@@ -10,7 +10,7 @@ const MyBooking = () => {
 
     const [myBooking, setMyBooking] = useState([]);
     useEffect( () => {
-        fetch('https://arcane-brushlands-48998.herokuapp.com/tourist')
+        fetch('https://stark-meadow-19264.herokuapp.com/booking')
         .then(res => res.json())
         .then(data => {
             const mached = data.filter(dt=> dt.email === user.email)
@@ -23,7 +23,7 @@ const MyBooking = () => {
         const sureDelete = window.confirm('you want to delete ??');
 
         if(sureDelete) {
-            const url = `https://arcane-brushlands-48998.herokuapp.com/tourist/${id}`;
+            const url = `https://stark-meadow-19264.herokuapp.com/booking/${id}`;
             fetch(url, {
                 method : 'DELETE',
             })

@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { useForm } from "react-hook-form";
 import './AddService.css';
 
@@ -11,13 +10,20 @@ const AddService = () => {
 
     const onSubmit = data => {
         console.log(data);
-        axios.post('https://arcane-brushlands-48998.herokuapp.com/services', data)
-        .then(res => {
-             if(res.data.insertedId) {
-                 alert('successfully added service');
-                 reset();
-             };
-        });
+        fetch('https://stark-meadow-19264.herokuapp.com/service', {
+          method : 'POST',
+          headers : {
+              'content-type' : 'application/json'
+          },
+          body : JSON.stringify(data)
+     })
+     .then(res => res.json())
+     .then(data => {
+         if(data.insertedId) {
+             alert('successfully added product');
+         }
+         reset();
+     })
     };
 
     return (
@@ -40,5 +46,17 @@ const AddService = () => {
 };
 
 export default AddService;
+
+
+/* 
+
+https://i.ibb.co/PgXcpTv/sixty-dome-mosque.jpg
+https://i.ibb.co/0qX32Sx/sundarban.jpg
+https://i.ibb.co/rkpk1C0/coxs-s-Bazar.jpg
+https://i.ibb.co/2SfR0hM/sentmartins.jpg
+https://i.ibb.co/NCvkC6M/captai-lake.jpg
+https://i.ibb.co/6swvHL1/sajekvalley.jpg
+*/
+
 
 

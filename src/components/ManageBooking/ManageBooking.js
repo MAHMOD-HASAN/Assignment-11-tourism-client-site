@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 const ManageBooking = () => {
     const [bookingStore, setBookingStore] = useState([]);
     useEffect( () => {
-        fetch('https://arcane-brushlands-48998.herokuapp.com/tourist')
+        fetch('https://stark-meadow-19264.herokuapp.com/booking')
         .then(res => res.json())
         .then(data => setBookingStore(data))
     }, []);
@@ -12,7 +12,7 @@ const ManageBooking = () => {
     const handleDelete = id => {
         const sureDelete = window.confirm('you want to delete ??')
         if(sureDelete) {
-            const url = `https://arcane-brushlands-48998.herokuapp.com/tourist/${id}`;
+            const url = `https://stark-meadow-19264.herokuapp.com/booking/${id}`;
             fetch(url, {
                 method : 'DELETE',
             })

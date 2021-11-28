@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 const TouristReview = () => {
   return (
 
-     <Container>
+     <Container className="mb-3">
 
        <h2 className='text-center fw-bold'><span className='text-danger'>Tourist</span>
         &nbsp;<span className='text-warning'>Feedback</span></h2>
@@ -14,7 +14,7 @@ const TouristReview = () => {
       {/*column number one */}
          <div>
 
-          <Col className='border border-secondary py-4 px-2 mb-3'  
+          <Col className='border border-secondary py-4 px-2 mb-3 h-100'  
           style={{backgroundColor : 'rgb(226, 213, 235)'}}>
 
               <img src="https://i.ibb.co/4M3q7Np/tourist1.jpg"
@@ -31,7 +31,7 @@ const TouristReview = () => {
         {/*column number two */}
          <div>
 
-            <Col className='border border-secondary py-4 px-2 mb-3'
+            <Col className='border border-secondary py-4 px-2 mb-3 h-100'
             style={{backgroundColor : 'rgb(226, 213, 235)'}}
             >
               <img src="https://i.ibb.co/37NcyvZ/tourist2.jpg"
@@ -47,7 +47,7 @@ const TouristReview = () => {
        {/*column number three */}
          <div>
 
-          <Col className='border border-secondary py-4 px-2 mb-3'
+          <Col className='border border-secondary py-4 px-2 mb-3 h-100'
           style={{backgroundColor : 'rgb(226, 213, 235)'}}
           >
               <img src="https://i.ibb.co/XZs32mF/tourist3.jpg"
