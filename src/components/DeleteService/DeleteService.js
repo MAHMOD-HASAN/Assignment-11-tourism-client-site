@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 const DeleteService = () => {
     const [services, setServices] = useState([]);
     useEffect( () => {
-        fetch('http://localhost:5000/service')
+        fetch('https://stark-meadow-19264.herokuapp.com/service')
         .then(res => res.json())
         .then(data => setServices(data))
     }, []);
@@ -15,7 +15,7 @@ const DeleteService = () => {
 
         if(sure) {
 
-            const url = `http://localhost:5000/service/${id}`;
+            const url = `https://stark-meadow-19264.herokuapp.com/service/${id}`;
             fetch(url, {
                 method : 'DELETE',
             })

@@ -5,6 +5,7 @@ import useAuth from '../../hooks/useAuth';
 
 const Booking = () => {
     const {user} = useAuth();
+    const {email, name} = user;
     
     // get input value by useing useRef Hook
     const nameRef = useRef();
@@ -19,7 +20,7 @@ const Booking = () => {
         const date = dateRef.current.value;
         const place = placeRef.current.value;
         const newTourist = {name, email, date, place};
-        fetch('http://localhost:5000/booking', {
+        fetch('https://stark-meadow-19264.herokuapp.com/booking', {
             method : 'POST',
             headers : {
                 'content-type' : 'application/json'
@@ -42,8 +43,8 @@ const Booking = () => {
 
             <form onSubmit={handlerBooknow}>
 
-                <input type="text" ref={nameRef} placeholder='Name'/>
-                <input type="email" ref={emailRef} placeholder='email'/>
+                <input type="text" ref={nameRef} value={name} placeholder='name'/>
+                <input type="email" ref={emailRef} value={email} placeholder='email'/>
                 <input type="date" ref={dateRef} placeholder='Date'/>
                 <input type="text" ref={placeRef} placeholder='where to?' />
                 <input type="submit" value="Book Now" />

@@ -1,64 +1,120 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
-import { useEffect, useState } from 'react';
-import firebaseInitialize from '../firebase/firebase.init';
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
+import { useEffect, useState } from "react";
+import firebaseInitialize from "../firebase/firebase.init";
 
+
+// initialize firebase app 
 firebaseInitialize();
 
 const useFirebase = () => {
+
     const [user, setUser] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const auth = getAuth();
-    const googleProvider = new GoogleAuthProvider();
 
-     // sign in using google provider
-    const signInUsingGoogle = () => {
-        setIsLoading(true);
-       return signInWithPopup(auth, googleProvider)
+
+
+    // sign in with google
+    const signInWithGoogle = (location, history) => {
+        setLoading(true);
+        const googleProvider = new GoogleAuthProvider();
+         signInWithPopup(auth, googleProvider)
+         .then(result => {
+            // google sign in succesfull
+            const destination = location?.state?.from || '/';
+            history.replace(destination);
+            setError('');
+         })
+         .catch((error) => {
+             setError(error.message);
+         })
+         .finally(() => setLoading(false))
     }
 
-    // Obserbe user state change is the browser tab
-    useEffect(() => {
-        onAuthStateChanged(auth, user => {
+
+
+    // login with email and password
+    const loginUser = (email, password, location, history) => {
+        setLoading(true);
+        signInWithEmailAndPassword(auth, email, password)
+        .then(result => {
+            // successfully login
+            const destination = location?.state?.from || '/';
+            history.replace(destination);
+              setError('');
+          })
+          .catch((error) => {
+            setError(error.message);
+          })
+          .finally(() => setLoading(false))
+    }
+
+
+
+    // registration with email & password
+    const registerUser = (email, password, name, history) => {
+        setLoading(true);
+        createUserWithEmailAndPassword(auth, email, password)
+        .then(result => {
+            // successfully registered
+            const newUser = {email, displayName : name};
+            setUser(newUser);
+
+            updateProfile(auth.currentUser, {
+              displayName: name,
+            }).then(() => {
+              // Profile updated!
+
+            }).catch((error) => {
+              setError(error.message);
+            });
+
+            history.push('/');
+              setError('');
+          })
+          .catch((error) => {
+            setError('You already exist! You should login');
+          })
+          .finally(() => setLoading(false))
+    }
+
+    // signOut method
+    const logOut = () => {
+      signOut(auth).then(() => {
+          // Sign-out successful.
+          setError('');
+        }).catch((error) => {
+           setError(error.message);
+        });
+  }
+
+
+    // user state observer
+    useEffect( () => {
+       const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
+            } else {
+              setUser({});
             }
-            else {
-                setUser({});
-            }
-            setIsLoading(false);
-        });
+            setLoading(false);
+          });
+          return () => unsubscribe;
+    }, [auth])
 
-    }, []);
-
-    // new user registration
-    const newUser = (email, password) => {
-      return  createUserWithEmailAndPassword(auth, email, password)
-    }
-
-    // already signedIn user
-    const oldUser = (email, password) => {
-      return  signInWithEmailAndPassword(auth, email, password)
-    }
-
-     // logOut function
-     const logOut = () => {
-         setIsLoading(true);
-        signOut(auth)
-            .then(() => { })
-            .finally(() => setIsLoading(false));
-     }
 
     return {
         user,
-        setUser,
-        isLoading,
-        setIsLoading,
-        signInUsingGoogle,
-        newUser,
-        oldUser,
+        error,
+        loading,
+        setError,
+        signInWithGoogle,
+        registerUser,
         logOut,
+        loginUser,
     }
-};
+}
 
 export default useFirebase;

@@ -13,6 +13,7 @@ import AddService from "./components/AddService/AddService";
 import DeleteService from "./components/DeleteService/DeleteService";
 import ManageBooking from "./components/ManageBooking/ManageBooking";
 import MyBooking from "./components/MyBooking/MyBooking";
+import Register from './components/Login/Register';
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
 
                     <Route exact path='/login'>
                     <Login></Login>
+                    </Route>
+
+                    <Route exact path='/register'>
+                    <Register></Register>
                     </Route>
 
                     <Route exact path='/addService'>
